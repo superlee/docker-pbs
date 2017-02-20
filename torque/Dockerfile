@@ -26,3 +26,4 @@ CMD hostname -f > /var/spool/torque/server_name
 CMD /usr/local/sbin/trqauthd &
 CMD yes|$(ls -d torque*)/torque.setup root
 CMD /usr/local/sbin/pbs_sched -d ${PBS_HOME}
+CMD mkdir /code
