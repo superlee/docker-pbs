@@ -15,12 +15,12 @@ RUN cd $(ls -d torque*)/ && \
 
 RUN yum -y install initscripts openssh openssh-server nfs-utils openldap-clients nss-pam-ldapd vim authconfig
 
+COPY init.sh /init.sh
+RUN chmod u+x /init.sh
+
 ENV PBS_HOME=/var/spool/torque
 
 EXPOSE 15001
 EXPOSE 22
 
-CMD hostname -f > /var/spool/torque/server_name
-CMD /usr/local/sbin/trqauthd &
-CMD yes|$(ls -d torque*)/torque.setup root
-CMD /usr/local/sbin/pbs_sched -d ${PBS_HOME}
+CMD /init.sh
